@@ -1,7 +1,12 @@
+import { Pomodoro } from '../../Components/Pomodoro';
 import './style.css';
 
 function Home() {
-  return <p>Pomodoro</p>;
+  return (
+    <div id="home">
+      <Pomodoro defaultTime={15} />
+    </div>
+  );
 }
 
 export default Home;
