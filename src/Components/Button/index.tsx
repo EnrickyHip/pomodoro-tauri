@@ -1,5 +1,7 @@
+import './style.css';
+
 interface Props {
-  children: string;
+  children: JSX.Element | JSX.Element[] | string;
   handleClick: () => void;
   classes?: string;
 }

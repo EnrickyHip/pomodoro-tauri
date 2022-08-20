@@ -10,7 +10,8 @@ interface Props {
 
 export function Pomodoro({ defaultTime }: Props) {
   const [mainTime, setMainTime] = useState(defaultTime);
-  const [interval, setInterval] = useState<number | null>(1000);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [interval, setInterval] = useState<number | null>(null);
 
   useInterval(() => {
     if (mainTime === 0) setMainTime(defaultTime);
@@ -18,18 +19,22 @@ export function Pomodoro({ defaultTime }: Props) {
   }, interval);
 
   const play = () => {
-    setInterval(1000);
-  };
-
-  const pause = () => {
-    setInterval(null);
+    if (isPlaying) {
+      setInterval(null);
+      setIsPlaying(false);
+    } else {
+      setInterval(1000);
+      setIsPlaying(true);
+    }
   };
 
   return (
     <div id="pomodoro">
       <Timer time={mainTime} />
-      <Button handleClick={play}>Play</Button>
-      <Button handleClick={pause}>Pause</Button>
+      <div id="buttons">
+        <Button handleClick={play}>{isPlaying ? 'Pause' : 'Play'}</Button>
+        <Button handleClick={play}>Settings</Button>
+      </div>
     </div>
   );
 }

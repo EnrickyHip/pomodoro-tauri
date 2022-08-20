@@ -1,5 +1,11 @@
 #pomodoro {
+  background-color: rgb(54, 54, 54);
+  width: 50%;
+  height: 50%;
+  padding: 2rem;
+  border-radius: 5px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
