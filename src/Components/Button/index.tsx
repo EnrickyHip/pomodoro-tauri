@@ -2,7 +2,7 @@ import './style.css';
 
 interface Props {
   children: JSX.Element | JSX.Element[] | string;
-  handleClick: () => void;
+  handleClick?: () => void;
   classes?: string;
 }
 

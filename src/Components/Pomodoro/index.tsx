@@ -1,40 +1,32 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useInterval } from '../../Hooks/useInterval';
+import { usePomodoro } from '../../store/Pomodoro';
 import { Button } from '../Button';
+import { Content } from '../Content';
 import { Timer } from '../Timer';
-import './style.css';
 
-interface Props {
-  defaultTime: number;
-}
-
-export function Pomodoro({ defaultTime }: Props) {
-  const [mainTime, setMainTime] = useState(defaultTime);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [interval, setInterval] = useState<number | null>(null);
+export function Pomodoro() {
+  const { state, actions } = usePomodoro();
+  const { currentTime, settings, interval, isPlaying } = state;
+  const { reset, decrement, pause, play } = actions;
 
   useInterval(() => {
-    if (mainTime === 0) setMainTime(defaultTime);
-    else setMainTime(mainTime - 1);
+    if (currentTime === 0) reset(settings.defaultMainTime);
+    else decrement();
   }, interval);
 
-  const play = () => {
-    if (isPlaying) {
-      setInterval(null);
-      setIsPlaying(false);
-    } else {
-      setInterval(1000);
-      setIsPlaying(true);
-    }
-  };
+  const togglePlay = () => (isPlaying ? pause() : play());
 
   return (
-    <div id="pomodoro">
-      <Timer time={mainTime} />
+    <Content>
+      <Timer time={currentTime} />
       <div id="buttons">
-        <Button handleClick={play}>{isPlaying ? 'Pause' : 'Play'}</Button>
-        <Button handleClick={play}>Settings</Button>
+        <Button handleClick={togglePlay}>{isPlaying ? 'Pause' : 'Play'}</Button>
+        <Link to="/settings">
+          <Button>Settings</Button>
+        </Link>
       </div>
-    </div>
+    </Content>
   );
 }
