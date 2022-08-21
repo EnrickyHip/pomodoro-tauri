@@ -1,21 +1,26 @@
-import { PayloadAction } from '@reduxjs/toolkit';
-import { Action } from 'redux';
+import { AnyAction } from '@reduxjs/toolkit';
 import * as actionTypes from './actionTypes';
 import { initialState, PomodoroState } from './initialState';
 
-export const reducer = (state: PomodoroState = { ...initialState }, action: PayloadAction<number>): PomodoroState => {
+export const reducer = (state: PomodoroState = { ...initialState }, action: AnyAction): PomodoroState => {
   switch (action.type) {
-    case actionTypes.PLAY:
-      return { ...state, isPlaying: true, interval: 1000 };
-
-    case actionTypes.PAUSE:
-      return { ...state, isPlaying: false, interval: null };
+    case actionTypes.TOGGLE:
+      return { ...state, isPlaying: !state.isPlaying };
 
     case actionTypes.DECREMENT:
       return { ...state, currentTime: state.currentTime - 1 };
 
     case actionTypes.RESET:
       return { ...state, currentTime: action.payload };
+
+    case actionTypes.MODE_POMODORO:
+      return { ...state, currentTime: state.settings.defaultMainTime, isPlaying: false, mode: 'MODE_POMODORO' };
+
+    case actionTypes.MODE_SHORT_REST:
+      return { ...state, currentTime: state.settings.shortRestTime, isPlaying: false, mode: 'MODE_SHORT_REST' };
+
+    case actionTypes.MODE_LONG_REST:
+      return { ...state, currentTime: state.settings.longRestTime, isPlaying: false, mode: 'MODE_LONG_REST' };
 
     default:
       return { ...state };

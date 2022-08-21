@@ -1,21 +1,31 @@
+export type Mode = 'MODE_POMODORO' | 'MODE_SHORT_REST' | 'MODE_LONG_REST';
+
+interface Settings {
+  defaultMainTime: number;
+  shortRestTime: number;
+  longRestTime: number;
+  cycles: number;
+}
+
 export interface PomodoroState {
-  settings: {
-    defaultMainTime: number;
-    cycles: number;
-  };
+  settings: Settings;
   currentTime: number;
   isPlaying: boolean;
-  interval: number | null;
+  mode: Mode;
 }
 
 const defaultMainTime = 15;
+const shortRestTime = 5;
+const longRestTime = 10;
 
 export const initialState: PomodoroState = {
-  settings: {
-    defaultMainTime,
-    cycles: 4,
-  },
   currentTime: defaultMainTime,
   isPlaying: false,
-  interval: null,
+  mode: 'MODE_POMODORO',
+  settings: {
+    defaultMainTime,
+    shortRestTime,
+    longRestTime,
+    cycles: 4,
+  },
 };

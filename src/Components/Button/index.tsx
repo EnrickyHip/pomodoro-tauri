@@ -2,13 +2,13 @@ import './style.css';
 
 interface Props {
   children: JSX.Element | JSX.Element[] | string;
-  handleClick?: () => void;
+  onClick?: () => void;
   classes?: string;
 }
 
-export function Button({ children, handleClick, classes }: Props) {
+export function Button({ children, onClick, classes }: Props) {
   return (
-    <button className={classes} onClick={handleClick}>
+    <button className={classes} onClick={onClick}>
       {children}
     </button>
   );
