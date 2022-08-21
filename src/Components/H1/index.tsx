@@ -6,5 +6,5 @@ interface Props {
 }
 
 export function H1({ children, id }: Props) {
-  return <h1 id={id}>{children}</h1>;
+  return <h2 id={id}>{children}</h2>;
 }

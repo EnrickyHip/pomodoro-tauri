@@ -4,11 +4,12 @@ interface Props {
   children: JSX.Element | JSX.Element[] | string;
   onClick?: () => void;
   classes?: string;
+  id?: string;
 }
 
-export function Button({ children, onClick, classes }: Props) {
+export function Button({ children, onClick, classes, id }: Props) {
   return (
-    <button className={classes} onClick={onClick}>
+    <button id={id} className={classes} onClick={onClick}>
       {children}
     </button>
   );

@@ -1,7 +1,6 @@
 import { useInterval } from '../../Hooks/useInterval';
 import { usePomodoro } from '../../store/Pomodoro';
 import { Button } from '../Button';
-import { Content } from '../Content';
 import { Timer } from '../Timer';
 
 export function Pomodoro() {
@@ -17,8 +16,8 @@ export function Pomodoro() {
   }, interval);
 
   return (
-    <Content>
-      <div id="buttons">
+    <>
+      <div id="modes">
         <Button classes={mode === 'MODE_POMODORO' ? 'active' : ''} onClick={() => setMode('MODE_POMODORO')}>
           Pomodoro
         </Button>
@@ -29,11 +28,9 @@ export function Pomodoro() {
           Long Rest
         </Button>
       </div>
-      {/* <Link to="/settings">
-        <Button>Settings</Button>
-      </Link> */}
+
       <Timer time={currentTime} />
       <Button onClick={toggle}>{isPlaying ? 'Pause' : 'Play'}</Button>
-    </Content>
+    </>
   );
 }

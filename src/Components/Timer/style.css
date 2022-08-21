@@ -1,10 +1,4 @@
 #timer {
   font-size: 6rem;
-  margin: 6rem;
-}
-
-#title {
-  position: absolute;
-  left: 0;
-  right: 0;
+  text-align: center;
 }
