@@ -15,9 +15,9 @@ export interface PomodoroState {
   mode: Mode;
 }
 
-const defaultMainTime = 15;
-const shortRestTime = 5;
-const longRestTime = 10;
+const defaultMainTime = 5;
+const shortRestTime = 2;
+const longRestTime = 3;
 
 export const initialState: PomodoroState = {
   currentTime: defaultMainTime,

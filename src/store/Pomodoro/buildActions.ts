@@ -4,6 +4,7 @@ import { Mode } from './initialState';
 
 export const buildActions = (dispatch: Dispatch) => {
   return {
+    completeCycle: () => dispatch({ type: actionTypes.COMPLETE_CYCLE }),
     toggle: () => dispatch({ type: actionTypes.TOGGLE }),
     decrement: () => dispatch({ type: actionTypes.DECREMENT }),
     reset: () => reset(dispatch),

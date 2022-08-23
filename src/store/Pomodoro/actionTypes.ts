@@ -6,3 +6,4 @@ export const MODE_SHORT_REST = prefix + '/MODE_SHORT_REST';
 export const MODE_LONG_REST = prefix + '/MODE_LONG_REST';
 export const DECREMENT = prefix + '/DECREMENT';
 export const RESET = prefix + '/RESET';
+export const COMPLETE_CYCLE = prefix + '/COMPLETE_CYCLE';

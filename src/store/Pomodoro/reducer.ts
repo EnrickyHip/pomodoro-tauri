@@ -13,6 +13,10 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: AnyA
     case actionTypes.RESET:
       return { ...state, currentCycle: 1 };
 
+    case actionTypes.COMPLETE_CYCLE: {
+      return { ...state, currentCycle: state.currentCycle + 1 };
+    }
+
     case actionTypes.MODE_POMODORO:
       return {
         ...state,

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useInterval } from '../../Hooks/useInterval';
 import { usePomodoro } from '../../store/Pomodoro';
 import { Button } from '../Button';
@@ -5,10 +6,30 @@ import { Timer } from '../Timer';
 
 export function Pomodoro() {
   const { state, actions } = usePomodoro();
-  const { currentTime, isPlaying, mode } = state;
-  const { reset, decrement, toggle, setMode } = actions;
+  const { currentTime, isPlaying, mode, currentCycle, settings } = state;
+  const { reset, decrement, toggle, setMode, completeCycle } = actions;
 
   const interval = isPlaying ? 1000 : null;
+
+  useEffect(() => {
+    if (currentTime > 0) return;
+
+    if (mode === 'MODE_POMODORO') {
+      if (currentCycle === settings.cycles) setMode('MODE_LONG_REST');
+      else setMode('MODE_SHORT_REST');
+    }
+
+    if (mode === 'MODE_SHORT_REST') {
+      setMode('MODE_POMODORO');
+      completeCycle();
+    }
+
+    if (mode === 'MODE_LONG_REST') {
+      reset();
+    }
+
+    toggle();
+  }, [currentTime]);
 
   useInterval(() => {
     decrement();
