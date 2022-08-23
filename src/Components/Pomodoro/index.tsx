@@ -5,14 +5,13 @@ import { Timer } from '../Timer';
 
 export function Pomodoro() {
   const { state, actions } = usePomodoro();
-  const { currentTime, settings, isPlaying, mode } = state;
+  const { currentTime, isPlaying, mode } = state;
   const { reset, decrement, toggle, setMode } = actions;
 
   const interval = isPlaying ? 1000 : null;
 
   useInterval(() => {
-    if (currentTime === 0) reset(settings.defaultMainTime);
-    else decrement();
+    decrement();
   }, interval);
 
   return (
@@ -30,7 +29,10 @@ export function Pomodoro() {
       </div>
 
       <Timer time={currentTime} />
-      <Button onClick={toggle}>{isPlaying ? 'Pause' : 'Play'}</Button>
+      <div>
+        <Button onClick={toggle}>{isPlaying ? 'Pause' : 'Play'}</Button>
+        <Button onClick={reset}>Reset</Button>
+      </div>
     </>
   );
 }

@@ -11,16 +11,31 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: AnyA
       return { ...state, currentTime: state.currentTime - 1 };
 
     case actionTypes.RESET:
-      return { ...state, currentTime: action.payload };
+      return { ...state, currentCycle: 1 };
 
     case actionTypes.MODE_POMODORO:
-      return { ...state, currentTime: state.settings.defaultMainTime, isPlaying: false, mode: 'MODE_POMODORO' };
+      return {
+        ...state,
+        currentTime: state.settings.defaultMainTime,
+        isPlaying: false,
+        mode: 'MODE_POMODORO',
+      };
 
     case actionTypes.MODE_SHORT_REST:
-      return { ...state, currentTime: state.settings.shortRestTime, isPlaying: false, mode: 'MODE_SHORT_REST' };
+      return {
+        ...state,
+        currentTime: state.settings.shortRestTime,
+        isPlaying: false,
+        mode: 'MODE_SHORT_REST',
+      };
 
     case actionTypes.MODE_LONG_REST:
-      return { ...state, currentTime: state.settings.longRestTime, isPlaying: false, mode: 'MODE_LONG_REST' };
+      return {
+        ...state,
+        currentTime: state.settings.longRestTime,
+        isPlaying: false,
+        mode: 'MODE_LONG_REST',
+      };
 
     default:
       return { ...state };
