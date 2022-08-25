@@ -10,6 +10,10 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: Payl
     case actionTypes.DECREMENT:
       return { ...state, currentTime: state.currentTime - 1, pastTime: state.pastTime + 1 };
 
+    case actionTypes.UPDATE_CURRENT_TIME: {
+      return { ...state, currentTime: action.payload };
+    }
+
     case actionTypes.RESET:
       return { ...state, currentCycle: 1 };
 
@@ -18,10 +22,7 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: Payl
     }
 
     case actionTypes.CHANGE_DEFAULT_TIME: {
-      return {
-        ...state,
-        settings: { ...state.settings, defaultMainTime: action.payload },
-      };
+      return { ...state, settings: { ...state.settings, defaultMainTime: action.payload } };
     }
 
     case actionTypes.CHANGE_SHORT_REST: {

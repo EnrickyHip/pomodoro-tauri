@@ -4,10 +4,12 @@ import { Mode } from './initialState';
 
 export const buildActions = (dispatch: Dispatch) => {
   return {
-    changeDefaultTime: (payload: number) => changeDefaultTime(payload, dispatch),
-    changeShortTime: (payload: number) => changeShortTime(payload, dispatch),
-    changeLongTime: (payload: number) => changeLongTime(payload, dispatch),
-    ChangeCycles: (payload: number) => ChangeCycles(payload, dispatch),
+    changeDefaultTime: (payload: number) => dispatch({ type: actionTypes.CHANGE_DEFAULT_TIME, payload }),
+    changeShortTime: (payload: number) => dispatch({ type: actionTypes.CHANGE_SHORT_REST, payload }),
+    changeLongTime: (payload: number) => dispatch({ type: actionTypes.CHANGE_LONG_REST, payload }),
+    ChangeCycles: (payload: number) => dispatch({ type: actionTypes.CHANGLE_CYCLES, payload }),
+
+    updateCurrentTime: (payload: number) => dispatch({ type: actionTypes.UPDATE_CURRENT_TIME, payload }),
 
     completeCycle: () => dispatch({ type: actionTypes.COMPLETE_CYCLE }),
     toggle: () => dispatch({ type: actionTypes.TOGGLE }),
@@ -20,24 +22,4 @@ export const buildActions = (dispatch: Dispatch) => {
 const reset = (dispatch: Dispatch) => {
   dispatch({ type: actionTypes.MODE_POMODORO });
   dispatch({ type: actionTypes.RESET });
-};
-
-const changeDefaultTime = (payload: number, dispatch: Dispatch) => {
-  dispatch({ type: actionTypes.CHANGE_DEFAULT_TIME, payload });
-  reset(dispatch);
-};
-
-const changeShortTime = (payload: number, dispatch: Dispatch) => {
-  dispatch({ type: actionTypes.CHANGE_SHORT_REST, payload });
-  reset(dispatch);
-};
-
-const changeLongTime = (payload: number, dispatch: Dispatch) => {
-  dispatch({ type: actionTypes.CHANGE_LONG_REST, payload });
-  reset(dispatch);
-};
-
-const ChangeCycles = (payload: number, dispatch: Dispatch) => {
-  dispatch({ type: actionTypes.CHANGLE_CYCLES, payload });
-  reset(dispatch);
 };

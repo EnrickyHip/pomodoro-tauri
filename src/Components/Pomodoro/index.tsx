@@ -6,16 +6,22 @@ import { Timer } from '../Timer';
 
 export function Pomodoro() {
   const { state, actions } = usePomodoro();
-  const { currentTime, isPlaying, mode, currentCycle, settings } = state;
-  const { reset, decrement, toggle, setMode, completeCycle } = actions;
+  const { currentTime, isPlaying, mode, currentCycle, settings, pastTime } = state;
+  const { reset, decrement, toggle, setMode, completeCycle, updateCurrentTime } = actions;
 
-  const interval = isPlaying ? 1000 : null;
+  const interval = isPlaying ? 100 : null;
+
+  useEffect(() => {
+    if (mode === 'MODE_POMODORO') updateCurrentTime(settings.defaultMainTime * 60 - pastTime);
+    if (mode === 'MODE_SHORT_REST') updateCurrentTime(settings.shortRestTime * 60 - pastTime);
+    if (mode === 'MODE_LONG_REST') updateCurrentTime(settings.longRestTime * 60 - pastTime);
+  }, [settings]);
 
   useEffect(() => {
     if (currentTime > 0) return;
 
     if (mode === 'MODE_POMODORO') {
-      if (currentCycle === settings.cycles) setMode('MODE_LONG_REST');
+      if (currentCycle >= settings.cycles) setMode('MODE_LONG_REST');
       else setMode('MODE_SHORT_REST');
     }
 
