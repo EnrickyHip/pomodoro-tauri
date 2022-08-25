@@ -10,6 +10,7 @@ interface Settings {
 export interface PomodoroState {
   settings: Settings;
   currentTime: number;
+  pastTime: number;
   currentCycle: number;
   isPlaying: boolean;
   mode: Mode;
@@ -20,7 +21,8 @@ const shortRestTime = 2;
 const longRestTime = 3;
 
 export const initialState: PomodoroState = {
-  currentTime: defaultMainTime,
+  currentTime: defaultMainTime * 60,
+  pastTime: 0,
   currentCycle: 1,
   isPlaying: false,
   mode: 'MODE_POMODORO',

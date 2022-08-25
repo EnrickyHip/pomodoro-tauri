@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useInterval } from '../../Hooks/useInterval';
 import { usePomodoro } from '../../store/Pomodoro';
-import { Button } from '../Button';
+import { Button } from '../UI/Button';
 import { Timer } from '../Timer';
 
 export function Pomodoro() {

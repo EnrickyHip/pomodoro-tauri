@@ -1,11 +1,12 @@
 import { BiArrowBack } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import { Container } from '../../Components/Container';
-import { Content } from '../../Components/Content';
-import { H1 } from '../../Components/H1';
-import { TopButton } from '../../Components/TopButton';
+import { SettingsForm } from '../../Components/SettingsForm';
+import { Container } from '../../Components/UI/Container';
+import { Content } from '../../Components/UI/Content';
+import { H1 } from '../../Components/UI/H1';
+import { TopButton } from '../../Components/UI/TopButton';
 
-function Home() {
+function Settings() {
   return (
     <div>
       <H1 id="title">Pomodoro Settings</H1>
@@ -16,11 +17,11 @@ function Home() {
               <BiArrowBack size={24} />
             </TopButton>
           </Link>
-          <p>settings here</p>
+          <SettingsForm />
         </Content>
       </Container>
     </div>
   );
 }
 
-export default Home;
+export default Settings;
