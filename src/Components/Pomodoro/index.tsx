@@ -9,7 +9,7 @@ export function Pomodoro() {
   const { currentTime, isPlaying, mode, currentCycle, settings, pastTime } = state;
   const { reset, decrement, toggle, setMode, completeCycle, updateCurrentTime } = actions;
 
-  const interval = isPlaying ? 100 : null;
+  const interval = isPlaying ? 1000 : null;
 
   useEffect(() => {
     if (mode === 'MODE_POMODORO') updateCurrentTime(settings.defaultMainTime * 60 - pastTime);

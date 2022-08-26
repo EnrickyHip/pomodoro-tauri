@@ -1,5 +1,5 @@
+import { BaseDirectory, readTextFile, writeTextFile, createDir } from '@tauri-apps/api/fs';
 export type Mode = 'MODE_POMODORO' | 'MODE_SHORT_REST' | 'MODE_LONG_REST';
-
 interface Settings {
   defaultMainTime: number;
   shortRestTime: number;
@@ -16,9 +16,21 @@ export interface PomodoroState {
   mode: Mode;
 }
 
-const defaultMainTime = 5;
-const shortRestTime = 2;
-const longRestTime = 3;
+const defaultMainTime = 25;
+const shortRestTime = 5;
+const longRestTime = 15;
+
+async function getSettings(): Promise<Settings> {
+  try {
+    const fileContent = await readTextFile('settings.json', { dir: BaseDirectory.App });
+    return JSON.parse(fileContent) as Settings;
+  } catch (error) {
+    const settings = { defaultMainTime, shortRestTime, longRestTime, cycles: 4 };
+    await createDir('pomodoro', { dir: BaseDirectory.Data });
+    await writeTextFile('settings.json', JSON.stringify(settings), { dir: BaseDirectory.App });
+    return settings;
+  }
+}
 
 export const initialState: PomodoroState = {
   currentTime: defaultMainTime * 60,
@@ -26,10 +38,5 @@ export const initialState: PomodoroState = {
   currentCycle: 1,
   isPlaying: false,
   mode: 'MODE_POMODORO',
-  settings: {
-    defaultMainTime,
-    shortRestTime,
-    longRestTime,
-    cycles: 4,
-  },
+  settings: await getSettings(),
 };
