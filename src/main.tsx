@@ -6,10 +6,12 @@ import './global.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PomodoroProvider } from './store/Pomodoro';
+import { TitleBar } from './Components/TitleBar';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
+      <TitleBar />
       <PomodoroProvider>
         <Routes>
           <Route path="/" element={<Home />} />
