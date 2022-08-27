@@ -1,5 +1,3 @@
-import './style.css';
-
 interface Props {
   children: JSX.Element | JSX.Element[] | string;
   inputId?: string;

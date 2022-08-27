@@ -2,8 +2,7 @@ import { BaseDirectory, writeTextFile } from '@tauri-apps/api/fs';
 import { useEffect } from 'react';
 import { usePomodoro } from '../../store/Pomodoro';
 import { Form } from '../UI/Form';
-import { Input } from '../UI/Input';
-import { Label } from '../UI/Label';
+import { InputLabel } from '../UI/InputLabel';
 
 import './style.css';
 
@@ -25,49 +24,41 @@ export function SettingsForm() {
 
   return (
     <Form id="settings-form">
-      <div className="input-group">
-        <Label inputId="main-time">Work Time (in minutes):</Label>
-        <Input
-          onChange={(event) => handleChange(event.target.value, 1439, changeDefaultTime)}
-          id="main-time"
-          value={settings.defaultMainTime.toString()}
-          type="number"
-          min="1"
-        />
-      </div>
+      <InputLabel
+        label="Work Time (in minutes):"
+        id="main-time"
+        onChange={(event) => handleChange(event.target.value, 1439, changeDefaultTime)}
+        value={settings.defaultMainTime.toString()}
+        type="number"
+        min="1"
+      />
 
-      <div className="input-group">
-        <Label inputId="short-rest-time">Short Rest Time:</Label>
-        <Input
-          onChange={(event) => handleChange(event.target.value, 1439, changeShortTime)}
-          id="short-rest-time"
-          value={settings.shortRestTime.toString()}
-          type="number"
-          min="1"
-        />
-      </div>
+      <InputLabel
+        label="Short Rest Time:"
+        onChange={(event) => handleChange(event.target.value, 1439, changeShortTime)}
+        id="short-rest-time"
+        value={settings.shortRestTime.toString()}
+        type="number"
+        min="1"
+      />
 
-      <div className="input-group">
-        <Label inputId="long-rest-time">Long Rest Time:</Label>
-        <Input
-          onChange={(event) => handleChange(event.target.value, 1439, changeLongTime)}
-          id="long-rest-time"
-          value={settings.longRestTime.toString()}
-          type="number"
-          min="1"
-        />
-      </div>
+      <InputLabel
+        label="Long Rest Time:"
+        onChange={(event) => handleChange(event.target.value, 1439, changeLongTime)}
+        id="long-rest-time"
+        value={settings.longRestTime.toString()}
+        type="number"
+        min="1"
+      />
 
-      <div className="input-group">
-        <Label inputId="cycles">Cycles:</Label>
-        <Input
-          onChange={(event) => handleChange(event.target.value, 100, ChangeCycles)}
-          id="cycles"
-          value={settings.cycles.toString()}
-          type="number"
-          min="1"
-        />
-      </div>
+      <InputLabel
+        label="Cycles:"
+        onChange={(event) => handleChange(event.target.value, 100, ChangeCycles)}
+        id="cycles"
+        value={settings.cycles.toString()}
+        type="number"
+        min="1"
+      />
     </Form>
   );
 }
