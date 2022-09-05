@@ -1,4 +1,6 @@
-button {
+import styled from 'styled-components';
+
+export const Button = styled.button`
   border: none;
   margin: 1rem;
 
@@ -10,8 +12,9 @@ button {
   font-size: 1rem;
   font-weight: 550;
   padding: 1rem;
-}
 
-button:hover, button.active {
-  background-color: rgb(107, 107, 107);
-}
+  &:hover,
+  &.active {
+    background-color: rgb(107, 107, 107);
+  }
+`;

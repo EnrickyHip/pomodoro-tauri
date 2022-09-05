@@ -1,15 +1,15 @@
 import { BiArrowBack } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import { SettingsForm } from '../../Components/SettingsForm';
-import { Container } from '../../Components/UI/Container';
-import { Content } from '../../Components/UI/Content';
-import { H1 } from '../../Components/UI/H1';
-import { TopButton } from '../../Components/UI/TopButton';
+import { SettingsForm } from '../../components/SettingsForm';
+import { Container } from '../../components/UI/Container';
+import { Content } from '../../components/UI/Content';
+import { Title } from '../../components/UI/Title';
+import { TopButton } from '../../components/UI/TopButton';
 
 function Settings() {
   return (
     <div>
-      <H1 id="title">Pomodoro Settings</H1>
+      <Title>Pomodoro</Title>
       <Container>
         <Content>
           <Link to="/">

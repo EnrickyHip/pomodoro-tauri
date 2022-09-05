@@ -1,10 +1,9 @@
 import { BaseDirectory, writeTextFile } from '@tauri-apps/api/fs';
 import { useEffect } from 'react';
 import { usePomodoro } from '../../store/Pomodoro';
-import { Form } from '../UI/Form';
 import { InputLabel } from '../UI/InputLabel';
 
-import './style.css';
+import { Form } from './styled';
 
 export function SettingsForm() {
   const { state, actions } = usePomodoro();
@@ -23,7 +22,7 @@ export function SettingsForm() {
   }
 
   return (
-    <Form id="settings-form">
+    <Form>
       <InputLabel
         label="Work Time (in minutes):"
         id="main-time"

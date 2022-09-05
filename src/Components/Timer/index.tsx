@@ -1,10 +1,10 @@
 import { convertToTime } from '../../utils/convertToTime';
-import './style.css';
+import { TimerContainer } from './styled';
 
 interface Props {
   time: number;
 }
 
 export function Timer({ time }: Props) {
-  return <div id="timer">{convertToTime(time)}</div>;
+  return <TimerContainer>{convertToTime(time)}</TimerContainer>;
 }

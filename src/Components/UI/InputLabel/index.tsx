@@ -1,8 +1,7 @@
 import { ChangeEvent } from 'react';
 import { Input } from '../Input';
 import { Label } from '../Label';
-
-import './style.css';
+import { Container } from './styled';
 
 interface Props {
   id: string;
@@ -15,9 +14,9 @@ interface Props {
 
 export function InputLabel({ id, value, min, onChange, type, label }: Props) {
   return (
-    <div className="input-label">
-      <Label inputId={id}>{label}</Label>
+    <Container>
+      <Label htmlFor={id}>{label}</Label>
       <Input onChange={onChange} id={id} value={value} type={type} min={min} />
-    </div>
+    </Container>
   );
 }

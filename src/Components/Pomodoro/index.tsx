@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useInterval } from '../../Hooks/useInterval';
 import { usePomodoro } from '../../store/Pomodoro';
-import { Button } from '../UI/Button';
 import { Timer } from '../Timer';
+import { Button } from '../UI/Button';
 
 export function Pomodoro() {
   const { state, actions } = usePomodoro();
@@ -44,13 +44,13 @@ export function Pomodoro() {
   return (
     <>
       <div id="modes">
-        <Button classes={mode === 'MODE_POMODORO' ? 'active' : ''} onClick={() => setMode('MODE_POMODORO')}>
+        <Button className={mode === 'MODE_POMODORO' ? 'active' : ''} onClick={() => setMode('MODE_POMODORO')}>
           Pomodoro
         </Button>
-        <Button classes={mode === 'MODE_SHORT_REST' ? 'active' : ''} onClick={() => setMode('MODE_SHORT_REST')}>
+        <Button className={mode === 'MODE_SHORT_REST' ? 'active' : ''} onClick={() => setMode('MODE_SHORT_REST')}>
           Short Rest
         </Button>
-        <Button classes={mode === 'MODE_LONG_REST' ? 'active' : ''} onClick={() => setMode('MODE_LONG_REST')}>
+        <Button className={mode === 'MODE_LONG_REST' ? 'active' : ''} onClick={() => setMode('MODE_LONG_REST')}>
           Long Rest
         </Button>
       </div>
