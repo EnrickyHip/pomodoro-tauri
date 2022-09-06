@@ -1,8 +1,8 @@
 import { appWindow } from '@tauri-apps/api/window';
-import './style.css';
 
 import { VscChromeMinimize, VscChromeMaximize, VscChromeRestore, VscChromeClose } from 'react-icons/vsc';
 import { useState } from 'react';
+import { ButtonsContainer, Logo, Title, TitleBarButton, WindowTitle, Wrapper } from './styled';
 
 export function TitleBar() {
   const [maximized, setMaximized] = useState(true);
@@ -12,26 +12,29 @@ export function TitleBar() {
     setMaximized(!maximized);
   }
 
+  const minimize = () => appWindow.minimize();
+  const close = () => appWindow.close();
+
   return (
-    <div data-tauri-drag-region className="titlebar">
-      <div id="window-title">
-        <img src="/44x44-gray.png" alt="pomodoro logo" />
-        <span>Pomodoro</span>
-      </div>
+    <Wrapper data-tauri-drag-region>
+      <WindowTitle>
+        <Logo src="/44x44-gray.png" alt="pomodoro logo" />
+        <Title>Pomodoro</Title>
+      </WindowTitle>
 
-      <div id="title-buttons">
-        <div onClick={() => appWindow.minimize()} className="titlebar-button" id="titlebar-minimize">
+      <ButtonsContainer>
+        <TitleBarButton onClick={minimize} id="titlebar-minimize">
           <VscChromeMinimize />
-        </div>
+        </TitleBarButton>
 
-        <div onClick={toggleMaximize} className="titlebar-button" id="titlebar-maximize">
+        <TitleBarButton onClick={toggleMaximize} id="titlebar-maximize">
           {maximized ? <VscChromeRestore /> : <VscChromeMaximize />}
-        </div>
+        </TitleBarButton>
 
-        <div onClick={() => appWindow.close()} className="titlebar-button" id="titlebar-close">
+        <TitleBarButton onClick={close} id="titlebar-close">
           <VscChromeClose />
-        </div>
-      </div>
-    </div>
+        </TitleBarButton>
+      </ButtonsContainer>
+    </Wrapper>
   );
 }

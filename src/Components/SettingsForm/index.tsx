@@ -2,7 +2,6 @@ import { BaseDirectory, writeTextFile } from '@tauri-apps/api/fs';
 import { useEffect } from 'react';
 import { usePomodoro } from '../../store/Pomodoro';
 import { InputLabel } from '../UI/InputLabel';
-
 import { Form } from './styled';
 
 export function SettingsForm() {

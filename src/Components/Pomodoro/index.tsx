@@ -43,7 +43,7 @@ export function Pomodoro() {
 
   return (
     <>
-      <div id="modes">
+      <div>
         <Button className={mode === 'MODE_POMODORO' ? 'active' : ''} onClick={() => setMode('MODE_POMODORO')}>
           Pomodoro
         </Button>
@@ -56,6 +56,7 @@ export function Pomodoro() {
       </div>
 
       <Timer time={currentTime} />
+
       <div>
         <Button onClick={toggle}>{isPlaying ? 'Pause' : 'Play'}</Button>
         <Button onClick={reset}>Reset</Button>
