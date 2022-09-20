@@ -1,4 +1,5 @@
 import { BaseDirectory, readTextFile, writeTextFile, createDir } from '@tauri-apps/api/fs';
+
 export type Mode = 'MODE_POMODORO' | 'MODE_SHORT_REST' | 'MODE_LONG_REST';
 interface Settings {
   defaultMainTime: number;
