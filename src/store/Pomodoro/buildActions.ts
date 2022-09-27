@@ -20,6 +20,6 @@ export const buildActions = (dispatch: Dispatch) => {
 };
 
 const reset = (dispatch: Dispatch) => {
-  dispatch({ type: actionTypes.MODE_POMODORO });
+  dispatch({ type: actionTypes.MODE_DEFAULT });
   dispatch({ type: actionTypes.RESET });
 };

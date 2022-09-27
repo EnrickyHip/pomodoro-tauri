@@ -1,6 +1,11 @@
 import { BaseDirectory, readTextFile, writeTextFile, createDir } from '@tauri-apps/api/fs';
 
-export type Mode = 'MODE_POMODORO' | 'MODE_SHORT_REST' | 'MODE_LONG_REST';
+export enum Mode {
+  default = 'MODE_DEFAULT',
+  shortRest = 'MODE_SHORT_REST',
+  longRest = 'MODE_LONG_REST',
+}
+
 interface Settings {
   defaultMainTime: number;
   shortRestTime: number;
@@ -38,6 +43,6 @@ export const initialState: PomodoroState = {
   pastTime: 0,
   currentCycle: 1,
   isPlaying: false,
-  mode: 'MODE_POMODORO',
+  mode: Mode.default,
   settings: await getSettings(),
 };

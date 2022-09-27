@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import * as actionTypes from './actionTypes';
-import { initialState, PomodoroState } from './initialState';
+import { initialState, Mode, PomodoroState } from './initialState';
 
 export const reducer = (state: PomodoroState = { ...initialState }, action: PayloadAction<number>): PomodoroState => {
   switch (action.type) {
@@ -37,13 +37,13 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: Payl
       return { ...state, settings: { ...state.settings, cycles: action.payload } };
     }
 
-    case actionTypes.MODE_POMODORO:
+    case actionTypes.MODE_DEFAULT:
       return {
         ...state,
         currentTime: state.settings.defaultMainTime * 60,
         pastTime: 0,
         isPlaying: false,
-        mode: 'MODE_POMODORO',
+        mode: Mode.default,
       };
 
     case actionTypes.MODE_SHORT_REST:
@@ -52,7 +52,7 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: Payl
         currentTime: state.settings.shortRestTime * 60,
         pastTime: 0,
         isPlaying: false,
-        mode: 'MODE_SHORT_REST',
+        mode: Mode.shortRest,
       };
 
     case actionTypes.MODE_LONG_REST:
@@ -61,7 +61,7 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: Payl
         currentTime: state.settings.longRestTime * 60,
         pastTime: 0,
         isPlaying: false,
-        mode: 'MODE_LONG_REST',
+        mode: Mode.longRest,
       };
 
     default:

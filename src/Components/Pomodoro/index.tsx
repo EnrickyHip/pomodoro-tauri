@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useInterval } from '../../Hooks/useInterval';
 import { usePomodoro } from '../../store/Pomodoro';
+import { Mode } from '../../store/Pomodoro/initialState';
 import { Timer } from '../Timer';
 import { Button } from '../UI/Button';
 
@@ -12,25 +13,25 @@ export function Pomodoro() {
   const interval = isPlaying ? 1000 : null;
 
   useEffect(() => {
-    if (mode === 'MODE_POMODORO') updateCurrentTime(settings.defaultMainTime * 60 - pastTime);
-    if (mode === 'MODE_SHORT_REST') updateCurrentTime(settings.shortRestTime * 60 - pastTime);
-    if (mode === 'MODE_LONG_REST') updateCurrentTime(settings.longRestTime * 60 - pastTime);
+    if (mode === Mode.default) updateCurrentTime(settings.defaultMainTime * 60 - pastTime);
+    if (mode === Mode.shortRest) updateCurrentTime(settings.shortRestTime * 60 - pastTime);
+    if (mode === Mode.longRest) updateCurrentTime(settings.longRestTime * 60 - pastTime);
   }, [settings]);
 
   useEffect(() => {
     if (currentTime > 0) return;
 
-    if (mode === 'MODE_POMODORO') {
-      if (currentCycle >= settings.cycles) setMode('MODE_LONG_REST');
-      else setMode('MODE_SHORT_REST');
+    if (mode === Mode.default) {
+      if (currentCycle >= settings.cycles) setMode(Mode.longRest);
+      else setMode(Mode.shortRest);
     }
 
-    if (mode === 'MODE_SHORT_REST') {
-      setMode('MODE_POMODORO');
+    if (mode === Mode.shortRest) {
+      setMode(Mode.default);
       completeCycle();
     }
 
-    if (mode === 'MODE_LONG_REST') {
+    if (mode === Mode.longRest) {
       reset();
     }
 
@@ -44,13 +45,13 @@ export function Pomodoro() {
   return (
     <>
       <div>
-        <Button className={mode === 'MODE_POMODORO' ? 'active' : ''} onClick={() => setMode('MODE_POMODORO')}>
+        <Button className={mode === Mode.default ? 'active' : ''} onClick={() => setMode(Mode.default)}>
           Pomodoro
         </Button>
-        <Button className={mode === 'MODE_SHORT_REST' ? 'active' : ''} onClick={() => setMode('MODE_SHORT_REST')}>
+        <Button className={mode === Mode.shortRest ? 'active' : ''} onClick={() => setMode(Mode.shortRest)}>
           Short Rest
         </Button>
-        <Button className={mode === 'MODE_LONG_REST' ? 'active' : ''} onClick={() => setMode('MODE_LONG_REST')}>
+        <Button className={mode === Mode.longRest ? 'active' : ''} onClick={() => setMode(Mode.longRest)}>
           Long Rest
         </Button>
       </div>
