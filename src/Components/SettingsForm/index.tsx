@@ -1,5 +1,3 @@
-import { BaseDirectory, writeTextFile } from '@tauri-apps/api/fs';
-import { useEffect } from 'react';
 import { usePomodoro } from '../../store/Pomodoro';
 import { InputLabel } from '../UI/InputLabel';
 import { Form } from './styled';
@@ -8,10 +6,6 @@ export function SettingsForm() {
   const { state, actions } = usePomodoro();
   const { settings } = state;
   const { changeDefaultTime, changeLongTime, changeShortTime, ChangeCycles } = actions;
-
-  useEffect(() => {
-    writeTextFile('settings.json', JSON.stringify(settings), { dir: BaseDirectory.App });
-  }, [settings]);
 
   function handleChange(value: string, max: number, action: (payload: number) => void, blur = false) {
     let valueNumber: number;

@@ -37,6 +37,10 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: Payl
       return { ...state, settings: { ...state.settings, cycles: action.payload } };
     }
 
+    case actionTypes.TOGGLE_THEME: {
+      return { ...state, settings: { ...state.settings, lightMode: !state.settings.lightMode } };
+    }
+
     case actionTypes.MODE_DEFAULT:
       return {
         ...state,

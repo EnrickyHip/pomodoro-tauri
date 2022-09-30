@@ -15,3 +15,4 @@ export const CHANGE_DEFAULT_TIME = prefix + '/CHANGE_DEFAULT_TIME';
 export const CHANGE_SHORT_REST = prefix + '/CHANGE_SHORT_REST';
 export const CHANGE_LONG_REST = prefix + '/CHANGE_LONG_REST';
 export const CHANGLE_CYCLES = prefix + '/CHANGLE_CYCLES';
+export const TOGGLE_THEME = prefix + '/TOGGLE_THEME';

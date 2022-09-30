@@ -6,12 +6,16 @@ import { Content } from '../../components/UI/Content';
 import { TopButton } from '../../components/UI/TopButton';
 import { Title } from '../../components/UI/Title';
 
-function Home() {
+interface Props {
+  lightMode: boolean;
+}
+
+function Home({ lightMode }: Props) {
   return (
     <div>
       <Title>Pomodoro</Title>
       <Container>
-        <Content>
+        <Content border={lightMode}>
           <Link to="/settings">
             <TopButton>
               <FiSettings size={24} />

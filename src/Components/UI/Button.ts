@@ -5,7 +5,7 @@ export const Button = styled.button`
     border: none;
     margin: 1rem;
 
-    background-color: ${colors.background.primary};
+    background-color: ${colors.background.secondary};
     border-radius: 2px;
     min-width: 7rem;
     color: ${colors.text.primary};
@@ -16,7 +16,7 @@ export const Button = styled.button`
 
     &:hover,
     &.active {
-      background-color: ${colors.background.tertiary};
+      background-color: ${colors.background.quartenary};
     }
   `}
 `;

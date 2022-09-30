@@ -12,7 +12,7 @@ export const TopButton = styled(Button)`
     display: inline-block;
 
     &:hover {
-      background-color: ${colors.background.tertiary};
+      background-color: ${colors.background.quartenary};
     }
   `}
 `;

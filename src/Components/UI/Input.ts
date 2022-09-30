@@ -7,7 +7,7 @@ export const Input = styled.input`
     font-size: 1.1rem;
     padding: 0.7rem;
     border-radius: 5px;
-    background-color: ${colors.background.primary};
+    background-color: ${colors.background.secondary};
     color: ${colors.text.primary};
 
     &::-webkit-outer-spin-button,

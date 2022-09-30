@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 export const Wrapper = styled.div`
   ${({ theme: { colors } }) => css`
     height: 30px;
-    background-color: ${colors.background.secondary};
+    background-color: rgb(54, 54, 54);
     user-select: none;
     display: flex;
     position: fixed;
@@ -24,12 +24,12 @@ export const TitleBarButton = styled.div`
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    color: ${colors.text.secondary};
+    color: rgb(207, 207, 207);
     width: 45px;
     height: 30px;
 
     &:hover {
-      background-color: ${colors.background.tertiary};
+      background-color: rgb(107, 107, 107);
     }
 
     &#titlebar-close:hover {
@@ -42,7 +42,7 @@ export const WindowTitle = styled.div`
   ${({ theme: { colors } }) => css`
     display: flex;
     align-items: center;
-    color: ${colors.text.secondary};
+    color: rgb(207, 207, 207);
     padding: 0 0.5rem;
     gap: 0.5rem;
   `}
