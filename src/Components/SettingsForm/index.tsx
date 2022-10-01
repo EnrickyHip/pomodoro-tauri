@@ -1,3 +1,4 @@
+import { useState, Dispatch, SetStateAction } from 'react';
 import { usePomodoro } from '../../store/Pomodoro';
 import { InputLabel } from '../UI/InputLabel';
 import { Form } from './styled';
@@ -7,18 +8,26 @@ export function SettingsForm() {
   const { settings } = state;
   const { changeDefaultTime, changeLongTime, changeShortTime, ChangeCycles } = actions;
 
-  function handleChange(value: string, max: number, action: (payload: number) => void, blur = false) {
-    let valueNumber: number;
+  const [defaultMainTime, setDefaultMainTime] = useState(settings.defaultMainTime.toString());
+  const [shortTime, setShortTime] = useState(settings.shortRestTime.toString());
+  const [longTime, setLongTime] = useState(settings.longRestTime.toString());
+  const [cycles, setCycles] = useState(settings.cycles.toString());
 
-    if (blur && !value) {
-      valueNumber = 1;
-    } else {
-      valueNumber = parseInt(value);
-    }
+  function saveSettings() {
+    changeDefaultTime(defaultMainTime ? parseInt(defaultMainTime) : settings.defaultMainTime);
+    changeShortTime(shortTime ? parseInt(shortTime) : settings.shortRestTime);
+    changeLongTime(longTime ? parseInt(longTime) : settings.longRestTime);
+    ChangeCycles(cycles ? parseInt(cycles) : settings.cycles);
+  }
 
+  function handleChange(value: string, max: number, set: Dispatch<SetStateAction<string>>) {
+    if (!value) return set('');
+
+    let valueNumber = parseInt(value);
     if (valueNumber < 1) valueNumber = 1;
     if (valueNumber > max) valueNumber = max;
-    action(valueNumber);
+
+    set(valueNumber.toString());
   }
 
   return (
@@ -26,39 +35,39 @@ export function SettingsForm() {
       <InputLabel
         label="Work Time (in minutes):"
         id="main-time"
-        onBlur={({ target }) => handleChange(target.value, 1439, changeDefaultTime, true)}
-        onChange={({ target }) => handleChange(target.value, 1439, changeDefaultTime)}
-        value={settings.defaultMainTime.toString()}
+        onBlur={saveSettings}
+        onChange={({ target }) => handleChange(target.value, 1439, setDefaultMainTime)}
+        value={defaultMainTime}
         type="number"
         min="1"
       />
 
       <InputLabel
         label="Short Rest Time:"
-        onBlur={({ target }) => handleChange(target.value, 1439, changeShortTime, true)}
-        onChange={({ target }) => handleChange(target.value, 1439, changeShortTime)}
+        onBlur={saveSettings}
+        onChange={({ target }) => handleChange(target.value, 1439, setShortTime)}
         id="short-rest-time"
-        value={settings.shortRestTime.toString()}
+        value={shortTime}
         type="number"
         min="1"
       />
 
       <InputLabel
         label="Long Rest Time:"
-        onBlur={({ target }) => handleChange(target.value, 1439, changeLongTime, true)}
-        onChange={({ target }) => handleChange(target.value, 1439, changeLongTime)}
+        onBlur={saveSettings}
+        onChange={({ target }) => handleChange(target.value, 1439, setLongTime)}
         id="long-rest-time"
-        value={settings.longRestTime.toString()}
+        value={longTime}
         type="number"
         min="1"
       />
 
       <InputLabel
         label="Cycles:"
-        onBlur={({ target }) => handleChange(target.value, 1439, ChangeCycles, true)}
-        onChange={({ target }) => handleChange(target.value, 100, ChangeCycles)}
+        onBlur={saveSettings}
+        onChange={({ target }) => handleChange(target.value, 100, setCycles)}
         id="cycles"
-        value={settings.cycles.toString()}
+        value={cycles}
         type="number"
         min="1"
       />
