@@ -31,9 +31,7 @@ export function Pomodoro() {
       completeCycle();
     }
 
-    if (mode === Mode.longRest) {
-      reset();
-    }
+    if (mode === Mode.longRest) reset();
 
     toggle();
   }, [currentTime]);
