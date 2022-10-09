@@ -9,19 +9,10 @@ import { ActionsContainer, ModesContainer } from './styled';
 export function Pomodoro() {
   const { state, actions } = usePomodoro();
   const { currentTime, isPlaying, mode, currentCycle, settings, pastTime } = state;
-  const { reset, decrement, toggle, setMode, completeCycle, updateCurrentTime } = actions;
+  const { reset, decrement, togglePlay, setMode, completeCycle, updateCurrentTime } = actions;
 
-  const interval = isPlaying ? 1000 : null;
-
-  useEffect(() => {
-    if (mode === Mode.default) updateCurrentTime(settings.defaultMainTime * 60 - pastTime);
-    if (mode === Mode.shortRest) updateCurrentTime(settings.shortRestTime * 60 - pastTime);
-    if (mode === Mode.longRest) updateCurrentTime(settings.longRestTime * 60 - pastTime);
-  }, [settings]);
-
-  useEffect(() => {
-    if (currentTime > 0) return;
-
+  console.log(isPlaying);
+  function next() {
     if (mode === Mode.default) {
       if (currentCycle >= settings.cycles) setMode(Mode.longRest);
       else setMode(Mode.shortRest);
@@ -33,8 +24,19 @@ export function Pomodoro() {
     }
 
     if (mode === Mode.longRest) reset();
+  }
 
-    toggle();
+  const interval = isPlaying ? 1000 : null;
+
+  useEffect(() => {
+    if (mode === Mode.default) updateCurrentTime(settings.defaultMainTime * 60 - pastTime);
+    if (mode === Mode.shortRest) updateCurrentTime(settings.shortRestTime * 60 - pastTime);
+    if (mode === Mode.longRest) updateCurrentTime(settings.longRestTime * 60 - pastTime);
+  }, [settings]);
+
+  useEffect(() => {
+    if (currentTime > 0) return;
+    next();
   }, [currentTime]);
 
   useInterval(() => {
@@ -58,7 +60,8 @@ export function Pomodoro() {
       <Timer time={currentTime} />
 
       <ActionsContainer>
-        <Button onClick={toggle}>{isPlaying ? 'Pause' : 'Play'}</Button>
+        <Button onClick={togglePlay}>{isPlaying ? 'Pause' : 'Play'}</Button>
+        <Button onClick={next}>Next</Button>
         <Button onClick={reset}>Reset</Button>
       </ActionsContainer>
     </>

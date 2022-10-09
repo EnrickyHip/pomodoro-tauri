@@ -1,6 +1,6 @@
 const prefix = 'Pomodoro';
 
-export const TOGGLE = prefix + '/TOGGLE';
+export const TOGGLE_PLAY = prefix + '/TOGGLE_PLAY';
 export const DECREMENT = prefix + '/DECREMENT';
 export const RESET = prefix + '/RESET';
 export const COMPLETE_CYCLE = prefix + '/COMPLETE_CYCLE';

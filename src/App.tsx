@@ -17,12 +17,12 @@ function App() {
   const { settings } = state;
   const lightMode = settings.lightMode;
 
-  useEffect(() => {
-    document.addEventListener('contextmenu', (event) => event.preventDefault());
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'F5') event.preventDefault();
-    });
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener('contextmenu', (event) => event.preventDefault());
+  //   document.addEventListener('keydown', (event) => {
+  //     if (event.key === 'F5') event.preventDefault();
+  //   });
+  // }, []);
 
   useEffect(() => {
     writeTextFile('settings.json', JSON.stringify(settings), { dir: BaseDirectory.App });

@@ -4,7 +4,7 @@ import { initialState, Mode, PomodoroState } from './initialState';
 
 export const reducer = (state: PomodoroState = { ...initialState }, action: PayloadAction<number>): PomodoroState => {
   switch (action.type) {
-    case actionTypes.TOGGLE:
+    case actionTypes.TOGGLE_PLAY:
       return { ...state, isPlaying: !state.isPlaying };
 
     case actionTypes.DECREMENT:
@@ -15,7 +15,7 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: Payl
     }
 
     case actionTypes.RESET:
-      return { ...state, currentCycle: 1 };
+      return { ...state, currentCycle: 1, isPlaying: false };
 
     case actionTypes.COMPLETE_CYCLE: {
       return { ...state, currentCycle: state.currentCycle + 1 };
@@ -46,7 +46,6 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: Payl
         ...state,
         currentTime: state.settings.defaultMainTime * 60,
         pastTime: 0,
-        isPlaying: false,
         mode: Mode.default,
       };
 
@@ -55,7 +54,6 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: Payl
         ...state,
         currentTime: state.settings.shortRestTime * 60,
         pastTime: 0,
-        isPlaying: false,
         mode: Mode.shortRest,
       };
 
@@ -64,7 +62,6 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: Payl
         ...state,
         currentTime: state.settings.longRestTime * 60,
         pastTime: 0,
-        isPlaying: false,
         mode: Mode.longRest,
       };
 
