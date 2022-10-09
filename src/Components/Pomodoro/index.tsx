@@ -32,6 +32,7 @@ export function Pomodoro() {
   }
 
   function playAudio() {
+    if (settings.silenceMode) return;
     if (mode === Mode.default) {
       audioFinish.play();
     } else {
@@ -51,7 +52,9 @@ export function Pomodoro() {
   }, [settings]);
 
   useEffect(() => {
-    if (isPlaying && mode === Mode.default) audioStart.play();
+    if (!settings.silenceMode && isPlaying && mode === Mode.default) {
+      audioStart.play();
+    }
   }, [isPlaying]);
 
   useEffect(() => {

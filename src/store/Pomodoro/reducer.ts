@@ -7,6 +7,9 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: Payl
     case actionTypes.TOGGLE_PLAY:
       return { ...state, isPlaying: !state.isPlaying };
 
+    case actionTypes.TOGGLE_SILENCE_MODE:
+      return { ...state, settings: { ...state.settings, silenceMode: !state.settings.silenceMode } };
+
     case actionTypes.DECREMENT:
       return { ...state, currentTime: state.currentTime - 1, pastTime: state.pastTime + 1 };
 

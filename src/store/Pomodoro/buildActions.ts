@@ -17,6 +17,8 @@ export const buildActions = (dispatch: Dispatch) => {
     decrement: () => dispatch({ type: actionTypes.DECREMENT }),
     reset: () => reset(dispatch),
     setMode: (payload: Mode) => dispatch({ type: actionTypes[payload], payload }),
+
+    toggleSilenceMode: () => dispatch({ type: actionTypes.TOGGLE_SILENCE_MODE }),
   };
 };
 

@@ -1,6 +1,7 @@
 const prefix = 'Pomodoro';
 
 export const TOGGLE_PLAY = prefix + '/TOGGLE_PLAY';
+export const TOGGLE_SILENCE_MODE = prefix + '/TOGGLE_SILENCE_MODE';
 export const DECREMENT = prefix + '/DECREMENT';
 export const RESET = prefix + '/RESET';
 export const COMPLETE_CYCLE = prefix + '/COMPLETE_CYCLE';
