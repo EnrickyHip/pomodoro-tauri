@@ -4,7 +4,7 @@ import { SettingsForm } from '../../components/SettingsForm';
 import { Container } from '../../components/UI/Container';
 import { Content } from '../../components/UI/Content';
 import { Title } from '../../components/UI/Title';
-import { TopButton } from '../../components/UI/TopButton';
+import { AbsoluteButton } from '../../components/AbsoluteButton';
 
 interface Props {
   lightMode: boolean;
@@ -17,9 +17,9 @@ function Settings({ lightMode }: Props) {
       <Container>
         <Content border={lightMode}>
           <Link to="/">
-            <TopButton>
+            <AbsoluteButton right="0" top="0">
               <BiArrowBack size={24} />
-            </TopButton>
+            </AbsoluteButton>
           </Link>
           <SettingsForm />
         </Content>

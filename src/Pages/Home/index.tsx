@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { Pomodoro } from '../../components/Pomodoro';
 import { Container } from '../../components/UI/Container';
 import { Content } from '../../components/UI/Content';
-import { TopButton } from '../../components/UI/TopButton';
 import { Title } from '../../components/UI/Title';
+import { AbsoluteButton } from '../../components/AbsoluteButton';
 
 interface Props {
   lightMode: boolean;
@@ -17,9 +17,9 @@ function Home({ lightMode }: Props) {
       <Container>
         <Content border={lightMode}>
           <Link to="/settings">
-            <TopButton>
+            <AbsoluteButton right="0" top="0">
               <FiSettings size={24} />
-            </TopButton>
+            </AbsoluteButton>
           </Link>
           <Pomodoro />
         </Content>

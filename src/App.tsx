@@ -10,7 +10,7 @@ import { TitleBar } from './components/TitleBar';
 import GlobalStyles from './styles/global';
 import { darkTheme, lightTheme } from './styles/theme';
 import { usePomodoro } from './store/Pomodoro';
-import { ThemeButton } from './components/UI/ThemeButton';
+import { AbsoluteButton } from './components/AbsoluteButton';
 
 function App() {
   const { state, actions } = usePomodoro();
@@ -32,9 +32,9 @@ function App() {
     <ThemeProvider theme={lightMode ? lightTheme : darkTheme}>
       <GlobalStyles />
       <BrowserRouter>
-        <ThemeButton onClick={actions.toggleTheme}>
+        <AbsoluteButton top="2rem" right="0" onClick={actions.toggleTheme}>
           {lightMode ? <BsFillMoonFill size={22} /> : <BsFillSunFill size={22} />}
-        </ThemeButton>
+        </AbsoluteButton>
         <TitleBar />
         <Routes>
           <Route path="/" element={<Home lightMode={lightMode} />} />
