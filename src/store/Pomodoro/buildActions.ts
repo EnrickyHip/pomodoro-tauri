@@ -2,9 +2,6 @@ import { Dispatch } from 'redux';
 import * as actionTypes from './actionTypes';
 import { Mode } from './initialState';
 
-const audioStart = new Audio('/sounds/bell-finish.mp3');
-const audioFinish = new Audio('/sounds/bell-finish.mp3');
-
 export const buildActions = (dispatch: Dispatch) => {
   return {
     changeDefaultTime: (payload: number) => dispatch({ type: actionTypes.CHANGE_DEFAULT_TIME, payload }),
@@ -20,9 +17,6 @@ export const buildActions = (dispatch: Dispatch) => {
     decrement: () => dispatch({ type: actionTypes.DECREMENT }),
     reset: () => reset(dispatch),
     setMode: (payload: Mode) => dispatch({ type: actionTypes[payload], payload }),
-
-    playAudioStart: () => audioStart.play(),
-    playAudioFinish: () => audioFinish.play(),
   };
 };
 

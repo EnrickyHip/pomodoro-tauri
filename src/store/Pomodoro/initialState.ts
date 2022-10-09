@@ -11,6 +11,7 @@ interface Settings {
   shortRestTime: number;
   longRestTime: number;
   cycles: number;
+  silenceMode: boolean;
   lightMode: boolean;
 }
 
@@ -32,7 +33,7 @@ async function getSettings(): Promise<Settings> {
     const fileContent = await readTextFile('settings.json', { dir: BaseDirectory.App });
     return JSON.parse(fileContent) as Settings;
   } catch (error) {
-    const settings = { defaultMainTime, shortRestTime, longRestTime, cycles: 4, lightMode: false };
+    const settings = { defaultMainTime, shortRestTime, longRestTime, cycles: 4, lightMode: false, silenceMode: false };
     await createDir('pomodoro', { dir: BaseDirectory.Data });
     await writeTextFile('settings.json', JSON.stringify(settings), { dir: BaseDirectory.App });
     return settings;

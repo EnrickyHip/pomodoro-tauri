@@ -15,7 +15,7 @@ export const reducer = (state: PomodoroState = { ...initialState }, action: Payl
     }
 
     case actionTypes.RESET:
-      return { ...state, currentCycle: 1, isPlaying: false };
+      return { ...state, currentCycle: 1 };
 
     case actionTypes.COMPLETE_CYCLE: {
       return { ...state, currentCycle: state.currentCycle + 1 };
