@@ -4,6 +4,7 @@ import { usePomodoro } from '../../store/Pomodoro';
 import { Mode } from '../../store/Pomodoro/initialState';
 import { Timer } from '../Timer';
 import { Button } from '../UI/Button';
+import { ActionsContainer, ModesContainer } from './styled';
 
 export function Pomodoro() {
   const { state, actions } = usePomodoro();
@@ -42,7 +43,7 @@ export function Pomodoro() {
 
   return (
     <>
-      <div>
+      <ModesContainer>
         <Button className={mode === Mode.default ? 'active' : ''} onClick={() => setMode(Mode.default)}>
           Pomodoro
         </Button>
@@ -52,14 +53,14 @@ export function Pomodoro() {
         <Button className={mode === Mode.longRest ? 'active' : ''} onClick={() => setMode(Mode.longRest)}>
           Long Rest
         </Button>
-      </div>
+      </ModesContainer>
 
       <Timer time={currentTime} />
 
-      <div>
+      <ActionsContainer>
         <Button onClick={toggle}>{isPlaying ? 'Pause' : 'Play'}</Button>
         <Button onClick={reset}>Reset</Button>
-      </div>
+      </ActionsContainer>
     </>
   );
 }
