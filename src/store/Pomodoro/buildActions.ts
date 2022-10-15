@@ -8,6 +8,7 @@ export const buildActions = (dispatch: Dispatch) => {
     changeShortTime: (payload: number) => dispatch({ type: actionTypes.CHANGE_SHORT_REST, payload }),
     changeLongTime: (payload: number) => dispatch({ type: actionTypes.CHANGE_LONG_REST, payload }),
     ChangeCycles: (payload: number) => dispatch({ type: actionTypes.CHANGLE_CYCLES, payload }),
+    changeAudioVolume: (payload: number) => dispatch({ type: actionTypes.CHANGE_AUDIO_VOLUME, payload }),
     toggleTheme: () => dispatch({ type: actionTypes.TOGGLE_THEME }),
 
     updateCurrentTime: (payload: number) => dispatch({ type: actionTypes.UPDATE_CURRENT_TIME, payload }),

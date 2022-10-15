@@ -1,12 +1,14 @@
 import { useState, Dispatch, SetStateAction } from 'react';
 import { usePomodoro } from '../../store/Pomodoro';
+import { MaterialIcon } from '../MaterialIcon';
+import { Input } from '../UI/Input';
 import { InputLabel } from '../UI/InputLabel';
-import { Form } from './styled';
+import { Form, ChangeSound } from './styled';
 
 export function SettingsForm() {
   const { state, actions } = usePomodoro();
   const { settings } = state;
-  const { changeDefaultTime, changeLongTime, changeShortTime, ChangeCycles } = actions;
+  const { changeDefaultTime, changeLongTime, changeShortTime, ChangeCycles, changeAudioVolume } = actions;
 
   const [defaultMainTime, setDefaultMainTime] = useState(settings.defaultMainTime.toString());
   const [shortTime, setShortTime] = useState(settings.shortRestTime.toString());
@@ -71,6 +73,24 @@ export function SettingsForm() {
         type="number"
         min="1"
       />
+
+      <ChangeSound>
+        {settings.audioVolume > 0.5 ? (
+          <MaterialIcon icon="volume_up" />
+        ) : settings.audioVolume > 0 ? (
+          <MaterialIcon style={{ marginRight: '4px' }} icon="volume_down" />
+        ) : (
+          <MaterialIcon icon="volume_off" />
+        )}
+
+        <Input
+          onChange={({ target }) => changeAudioVolume(parseInt(target.value) / 100)}
+          type="range"
+          value={settings.audioVolume * 100}
+          min={0}
+          max={100}
+        />
+      </ChangeSound>
     </Form>
   );
 }

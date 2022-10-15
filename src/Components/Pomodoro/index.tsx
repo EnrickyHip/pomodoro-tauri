@@ -16,6 +16,9 @@ export function Pomodoro() {
 
   const interval = isPlaying ? 1000 : null;
 
+  audioStart.volume = settings.audioVolume;
+  audioFinish.volume = settings.audioVolume;
+
   function next() {
     if (mode === Mode.default) {
       if (currentCycle >= settings.cycles) setMode(Mode.longRest);

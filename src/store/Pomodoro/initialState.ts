@@ -13,6 +13,7 @@ interface Settings {
   cycles: number;
   silenceMode: boolean;
   lightMode: boolean;
+  audioVolume: number;
 }
 
 export interface PomodoroState {
@@ -33,7 +34,15 @@ async function getSettings(): Promise<Settings> {
     const fileContent = await readTextFile('settings.json', { dir: BaseDirectory.App });
     return JSON.parse(fileContent) as Settings;
   } catch (error) {
-    const settings = { defaultMainTime, shortRestTime, longRestTime, cycles: 4, lightMode: false, silenceMode: false };
+    const settings = {
+      defaultMainTime,
+      shortRestTime,
+      longRestTime,
+      cycles: 4,
+      lightMode: false,
+      silenceMode: false,
+      audioVolume: 0.5,
+    };
     await createDir('pomodoro', { dir: BaseDirectory.Data });
     await writeTextFile('settings.json', JSON.stringify(settings), { dir: BaseDirectory.App });
     return settings;
