@@ -6,7 +6,7 @@ export enum Mode {
   longRest = 'MODE_LONG_REST',
 }
 
-interface Settings {
+interface PomodoroSettings {
   defaultMainTime: number;
   shortRestTime: number;
   longRestTime: number;
@@ -17,7 +17,7 @@ interface Settings {
 }
 
 export interface PomodoroState {
-  settings: Settings;
+  settings: PomodoroSettings;
   currentTime: number;
   pastTime: number;
   currentCycle: number;
@@ -29,10 +29,10 @@ const defaultMainTime = 25;
 const shortRestTime = 5;
 const longRestTime = 15;
 
-async function getSettings(): Promise<Settings> {
+async function getSettings(): Promise<PomodoroSettings> {
   try {
     const fileContent = await readTextFile('settings.json', { dir: BaseDirectory.App });
-    return JSON.parse(fileContent) as Settings;
+    return JSON.parse(fileContent) as PomodoroSettings;
   } catch (error) {
     const settings = {
       defaultMainTime,

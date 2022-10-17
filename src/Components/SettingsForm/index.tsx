@@ -5,6 +5,8 @@ import { Input } from '../UI/Input';
 import { InputLabel } from '../UI/InputLabel';
 import { Form, ChangeSound } from './styled';
 
+type SetState = Dispatch<SetStateAction<string>>;
+
 export function SettingsForm() {
   const { state, actions } = usePomodoro();
   const { settings } = state;
@@ -23,7 +25,7 @@ export function SettingsForm() {
     ChangeCycles(cycles ? parseInt(cycles) : settings.cycles);
   }
 
-  function handleChange(value: string, max: number, set: Dispatch<SetStateAction<string>>) {
+  function handleChange(value: string, max: number, set: SetState) {
     if (!value) return set('');
 
     let valueNumber = parseInt(value);
@@ -33,7 +35,7 @@ export function SettingsForm() {
     set(valueNumber.toString());
   }
 
-  function handleChangeAudio(value: number) {
+  function handleVolume(value: number) {
     if (settings.silenceMode && value > 0) toggleSilenceMode();
     if (!settings.silenceMode && value === 0) toggleSilenceMode();
     changeAudioVolume(value);
@@ -90,7 +92,7 @@ export function SettingsForm() {
       <ChangeSound>
         <AudioIcon />
         <Input
-          onChange={({ target }) => handleChangeAudio(parseInt(target.value) / 100)}
+          onChange={({ target }) => handleVolume(parseInt(target.value) / 100)}
           type="range"
           value={settings.silenceMode ? 0 : settings.audioVolume * 100}
           min={0}

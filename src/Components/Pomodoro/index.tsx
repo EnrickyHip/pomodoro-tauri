@@ -55,7 +55,7 @@ export function Pomodoro() {
   }, [settings]);
 
   useEffect(() => {
-    if (!settings.silenceMode && isPlaying && mode === Mode.default) {
+    if (isPlaying && mode === Mode.default) {
       audioStart.play();
     }
   }, [isPlaying]);
