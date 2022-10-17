@@ -23,7 +23,7 @@ export const lightTheme = {
       primary: 'rgb(247, 247, 247)',
       secondary: 'rgb(220, 220, 220)',
       tertiary: 'rgb(240, 240, 240)',
-      quartenary: 'rgb(190, 190, 190)',
+      quartenary: 'rgb(170, 170, 170)',
     },
   },
 };

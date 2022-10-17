@@ -8,7 +8,8 @@ import { Form, ChangeSound } from './styled';
 export function SettingsForm() {
   const { state, actions } = usePomodoro();
   const { settings } = state;
-  const { changeDefaultTime, changeLongTime, changeShortTime, ChangeCycles, changeAudioVolume } = actions;
+  const { changeDefaultTime, changeLongTime, changeShortTime, ChangeCycles, changeAudioVolume, toggleSilenceMode } =
+    actions;
 
   const [defaultMainTime, setDefaultMainTime] = useState(settings.defaultMainTime.toString());
   const [shortTime, setShortTime] = useState(settings.shortRestTime.toString());
@@ -30,6 +31,18 @@ export function SettingsForm() {
     if (valueNumber > max) valueNumber = max;
 
     set(valueNumber.toString());
+  }
+
+  function handleChangeAudio(value: number) {
+    if (settings.silenceMode && value > 0) toggleSilenceMode();
+    if (!settings.silenceMode && value === 0) toggleSilenceMode();
+    changeAudioVolume(value);
+  }
+
+  function AudioIcon() {
+    if (settings.audioVolume === 0 || settings.silenceMode) return <MaterialIcon icon="volume_off" />;
+    if (settings.audioVolume < 0.5) return <MaterialIcon icon="volume_down" />;
+    return <MaterialIcon icon="volume_up" />;
   }
 
   return (
@@ -75,18 +88,11 @@ export function SettingsForm() {
       />
 
       <ChangeSound>
-        {settings.audioVolume > 0.5 ? (
-          <MaterialIcon icon="volume_up" />
-        ) : settings.audioVolume > 0 ? (
-          <MaterialIcon style={{ marginRight: '4px' }} icon="volume_down" />
-        ) : (
-          <MaterialIcon icon="volume_off" />
-        )}
-
+        <AudioIcon />
         <Input
-          onChange={({ target }) => changeAudioVolume(parseInt(target.value) / 100)}
+          onChange={({ target }) => handleChangeAudio(parseInt(target.value) / 100)}
           type="range"
-          value={settings.audioVolume * 100}
+          value={settings.silenceMode ? 0 : settings.audioVolume * 100}
           min={0}
           max={100}
         />
